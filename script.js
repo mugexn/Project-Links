@@ -13,6 +13,17 @@ projectCards.forEach(card => {
 });
 
 // ================================
+// PROFILE IMAGE CLICK / TAP
+// ================================
+
+const profileImage = document.querySelector(".profile-image");
+if (profileImage) {
+    profileImage.addEventListener("click", () => {
+        profileImage.classList.toggle("profile-swapped");
+    });
+}
+
+// ================================
 // README MODAL FUNCTIONALITY
 // ================================
 
