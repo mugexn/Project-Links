@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mugexn</title>
+    <link rel="icon" type="image/png" href="images/portfolio4.png">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="container">
+
+        <!-- =========================
+             PROFILE
+        ========================== -->
+
+        <section class="profile">
+            <div class="profile-image">
+                <img
+                    src="images/pf1.png"
+                    alt="Mark Niko Naza"
+                    class="profile-img profile-img-one"
+                >
+                <img
+                    src="images/pf1.1.png"
+                    alt="Mark Niko Naza"
+                    class="profile-img profile-img-two"
+                >
+            </div>
+
+            <h1>Mark Niko Naza</h1>
+
+            <p class="tagline">
+                Developer • Instructor • Designer
+            </p>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a
+                    href="https://github.com/mugexn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                >
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/in/marknikonaza"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                >
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- =========================
+             PROJECTS
+        ========================== -->
+
+        <section class="projects">
+
+            <!-- PROJECT 1 -->
+            <div class="project-card">
+                <a
+                    href="https://uep-main-campus.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-main"
+                >
+                    <img
+                        src="images/uepmap.png"
+                        alt="UEP Main Campus Map"
+                    >
+                    <div class="project-info">
+                        <h2>
+                            UEP Main Campus Map
+                        </h2>
+                        <p>
+                            An interactive map for locating buildings, offices, and facilities at UEP Main Campus.
+                        </p>
+                    </div>
+                </a>
+                <button
+                    type="button"
+                    class="readme-button"
+                    onclick="openReadme('mugexn', 'UEP-Main-Campus')"
+                >
+                    <i class="fa-brands fa-github"></i>
+                    README
+                </button>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="project-card">
+                <a
+                    href="https://mugexn.github.io/Quiz-Card/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-main"
+                >
+                    <img
+                        src="images/quizcard.png"
+                        alt="Quiz Card"
+                    >
+                    <div class="project-info">
+                        <h2>
+                            Quiz Card
+                        </h2>
+                        <p>
+                            A simple interactive quiz application for testing knowledge.
+                        </p>
+                    </div>
+                </a>
+                <button
+                    type="button"
+                    class="readme-button"
+                    onclick="openReadme('mugexn', 'Quiz-Card')"
+                >
+                    <i class="fa-brands fa-github"></i>
+                    README
+                </button>
+            </div>
+
+            <!-- PROJECT 3 -->
+            <div class="project-card">
+                <a
+                    href="https://mugexn.github.io/Random-Name-Picker/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-main"
+                >
+                    <img
+                        src="images/random.png"
+                        alt="Random Name Picker"
+                    >
+                    <div class="project-info">
+                        <h2>
+                            Random Name Picker
+                        </h2>
+                        <p>
+                            A fun application for randomly selecting names with background music.
+                        </p>
+                    </div>
+                </a>
+                <button
+                    type="button"
+                    class="readme-button"
+                    onclick="openReadme('mugexn', 'Random-Name-Picker')"
+                >
+                    <i class="fa-brands fa-github"></i>
+                    README
+                </button>
+            </div>
+        </section>
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer>
+            <p>
+                © 2026 MUGEXN
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- =========================
+         README MODAL
+    ========================== -->
+
+    <div
+        id="readme-modal"
+        class="readme-modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+    >
+        <div class="readme-container">
+            <!-- Modal Header -->
+            <div class="readme-header">
+                <h2 id="readme-title">
+                    README
+                </h2>
+                <button
+                    type="button"
+                    class="close-readme"
+                    onclick="closeReadme()"
+                    aria-label="Close README"
+                >
+                    &times;
+                </button>
+            </div>
+
+            <!-- README Content -->
+
+            <div id="readme-content">
+                <div class="readme-loading">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <span>
+                        Loading README...
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
