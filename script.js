@@ -1,9 +1,7 @@
-// ================================
-// PROJECT CARD CLICK ANIMATION
-// ================================
 const projectCards = document.querySelectorAll(".project-card");
 projectCards.forEach(card => {
     card.addEventListener("click", (event) => {
+        
         if (event.target.closest(".readme-button")) {
             return;
         }
@@ -13,7 +11,6 @@ projectCards.forEach(card => {
         }, 120);
     });
 });
-
 
 // ================================
 // PROFILE IMAGE CLICK / TAP
@@ -27,7 +24,17 @@ if (profileImage) {
 }
 
 // ================================
-// README MODAL
+// PROFILE IMAGE CLICK / TAP
+// ================================
+const profileImage = document.querySelector(".profile-image");
+if (profileImage) {
+    profileImage.addEventListener("click", () => {
+        profileImage.classList.toggle("profile-swapped");
+    });
+}
+
+// ================================
+// README MODAL FUNCTIONALITY
 // ================================
 
 async function openReadme(owner, repo) {
@@ -46,8 +53,8 @@ async function openReadme(owner, repo) {
             <span>Loading README...</span>
         </div>
     `;
-
     try {
+        
         const response = await fetch(
             `https://api.github.com/repos/${owner}/${repo}/readme`,
             {
@@ -68,11 +75,8 @@ async function openReadme(owner, repo) {
         }
 
         const markdown = await response.text();
-
         content.innerHTML = marked.parse(markdown);
-
         fixReadmeLinks(owner, repo);
-
     } catch (error) {
         console.error("README Error:", error);
         content.innerHTML = `
@@ -80,7 +84,7 @@ async function openReadme(owner, repo) {
                 <i class="fa-solid fa-triangle-exclamation"></i>
                 <h3>Unable to load README</h3>
                 <p>${escapeHtml(error.message)}</p>
-                <a
+                <a 
                     href="https://github.com/${owner}/${repo}"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -105,6 +109,7 @@ function fixReadmeLinks(owner, repo) {
         if (!src) {
             return;
         }
+       
         if (
             src.startsWith("http://") ||
             src.startsWith("https://") ||
@@ -113,17 +118,21 @@ function fixReadmeLinks(owner, repo) {
         ) {
             return;
         }
+        
         const cleanPath = src.replace(/^\.?\//, "");
+      
         img.src =
             `https://raw.githubusercontent.com/${owner}/${repo}/main/${cleanPath}`;
     });
 
+    // Fix links
     const links = content.querySelectorAll("a");
     links.forEach(link => {
         const href = link.getAttribute("href");
         if (!href) {
             return;
         }
+       
         if (
             href.startsWith("http://") ||
             href.startsWith("https://") ||
@@ -132,8 +141,9 @@ function fixReadmeLinks(owner, repo) {
         ) {
             return;
         }
-
+       
         const cleanPath = href.replace(/^\.?\//, "");
+        
         link.href =
             `https://github.com/${owner}/${repo}/blob/main/${cleanPath}`;
         link.target = "_blank";
@@ -142,39 +152,41 @@ function fixReadmeLinks(owner, repo) {
 }
 
 // ================================
-// CLOSE README
+// CLOSE README MODAL
 // ================================
 
 function closeReadme() {
     const modal = document.getElementById("readme-modal");
-    if (!modal) {
-        return;
-    }
     modal.classList.remove("active");
     modal.setAttribute("aria-hidden", "true");
 }
 
+// ================================
+// CLOSE WHEN CLICKING OUTSIDE
+// ================================
+
 const readmeModal = document.getElementById("readme-modal");
 if (readmeModal) {
     readmeModal.addEventListener("click", (event) => {
+        // Only close when clicking the dark overlay
         if (event.target === readmeModal) {
             closeReadme();
         }
     });
 }
 
+// ================================
+// CLOSE WITH ESCAPE KEY
+// ================================
+
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         const modal = document.getElementById("readme-modal");
-        if (
-            modal &&
-            modal.classList.contains("active")
-        ) {
+        if (modal && modal.classList.contains("active")) {
             closeReadme();
         }
     }
 });
-
 
 // ================================
 // ESCAPE HTML
