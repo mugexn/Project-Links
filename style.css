@@ -98,6 +98,32 @@ body {
    PROFILE IMAGE CLICK / TAP
 ========================================= */
 
+/* .profile-image.profile-swapped .profile-img-one {
+    opacity: 0;
+    transform: scale(1.08);
+}
+.profile-image.profile-swapped .profile-img-two {
+    opacity: 1;
+    transform: scale(1.08);
+} */
+
+/* =========================================
+   DESKTOP HOVER
+========================================= */
+@media (hover: hover) {
+    .profile-image:hover .profile-img-one {
+        opacity: 0;
+        transform: scale(1.08);
+    }
+    .profile-image:hover .profile-img-two {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+/* =========================================
+   CLICK / TAP STATE
+========================================= */
 .profile-image.profile-swapped .profile-img-one {
     opacity: 0;
     transform: scale(1.08);
