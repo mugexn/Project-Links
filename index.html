@@ -36,7 +36,7 @@
             <h1>Mark Niko Naza</h1>
 
             <p class="tagline">
-                Developer • Instructor • Designer
+                Developer • Lecturer • Designer
             </p>
 
             <!-- Social Links -->
@@ -58,7 +58,26 @@
                 >
                     <i class="fa-brands fa-linkedin-in"></i>
                 </a>
+
+                <a
+                    href="https://www.credly.com/users/marknikonaza"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Credly"
+                >
+                    <i class="fa-solid fa-c"></i>
+                </a>
             </div>
+
+            <!-- Certificates -->
+            <button
+                type="button"
+                class="certificate-button"
+                onclick="openCertificates()"
+            >
+                <i class="fa-solid fa-award"></i>
+                Certificates
+            </button>
         </section>
 
         <!-- =========================
@@ -207,6 +226,38 @@
     </main>
 
     <!-- =========================
+         CERTIFICATES WINDOW
+    ========================== -->
+
+    <div
+        id="certificate-modal"
+        class="certificate-modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="certificate-title"
+    >
+        <div class="certificate-container">
+            <div class="certificate-header">
+                <div>
+                    <h2 id="certificate-title">Certificates</h2>
+                    <p>Professional certifications and credentials</p>
+                </div>
+                <button
+                    type="button"
+                    class="close-certificate"
+                    onclick="closeCertificates()"
+                    aria-label="Close certificates"
+                >
+                    &times;
+                </button>
+            </div>
+
+            <div id="certificate-content" class="certificate-content"></div>
+        </div>
+    </div>
+
+    <!-- =========================
          README MODAL
     ========================== -->
 
@@ -249,5 +300,4 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>

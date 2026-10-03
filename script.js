@@ -24,6 +24,89 @@ if (profileImage) {
 }
 
 // ================================
+// CERTIFICATES
+// ================================
+
+// Add or edit your certificates here.
+// Leave verificationUrl empty ("") when a certificate has no verification link.
+const certificates = [
+    {
+        name: "Introduction to Cybersecurity",
+        provider: "CISCO Networking Academy",
+        date: "July 2026",
+        image: "images/cisco1.png",
+        verificationUrl: "https://www.credly.com/badges/3e0868bd-9316-414b-92d8-65b98a9613a3"
+    },
+    {
+        name: "Programming for Intermediate Users Using Python",
+        provider: "Department of Information and Communication Technology",
+        date: "November 2021",
+        image: "images/dict2.png",
+        verificationUrl: ""
+    },
+    {
+        name: "Programming for Beginners Using Python",
+        provider: "Department of Information and Communication Technology",
+        date: "November 2021",
+        image: "images/dict1.png",
+        verificationUrl: ""
+    }
+];
+
+function openCertificates() {
+    const modal = document.getElementById("certificate-modal");
+    const content = document.getElementById("certificate-content");
+
+    content.innerHTML = certificates.map(certificate => {
+        const verification = certificate.verificationUrl
+            ? `<a class="certificate-verify" href="${escapeAttribute(certificate.verificationUrl)}" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Verify Certificate
+               </a>`
+            : "";
+
+        return `
+            <article class="certificate-card">
+                <img
+                    class="certificate-image"
+                    src="${escapeAttribute(certificate.image)}"
+                    alt="${escapeAttribute(certificate.name)} certificate"
+                    loading="lazy"
+                >
+                <div class="certificate-details">
+                    <h3>${escapeHtml(certificate.name)}</h3>
+                    <p class="certificate-provider">${escapeHtml(certificate.provider)}</p>
+                    <p class="certificate-date">
+                        <i class="fa-regular fa-calendar"></i>
+                        ${escapeHtml(certificate.date)}
+                    </p>
+                    ${verification}
+                </div>
+            </article>
+        `;
+    }).join("");
+
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+}
+
+function closeCertificates() {
+    const modal = document.getElementById("certificate-modal");
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+}
+
+const certificateModal = document.getElementById("certificate-modal");
+if (certificateModal) {
+    certificateModal.addEventListener("click", event => {
+        if (event.target === certificateModal) {
+            closeCertificates();
+        }
+    });
+}
+
+// ================================
 // README MODAL FUNCTIONALITY
 // ================================
 
@@ -173,6 +256,12 @@ document.addEventListener("keydown", (event) => {
         const modal = document.getElementById("readme-modal");
         if (modal && modal.classList.contains("active")) {
             closeReadme();
+            return;
+        }
+
+        const certificateModal = document.getElementById("certificate-modal");
+        if (certificateModal && certificateModal.classList.contains("active")) {
+            closeCertificates();
         }
     }
 });
@@ -180,6 +269,10 @@ document.addEventListener("keydown", (event) => {
 // ================================
 // ESCAPE HTML
 // ================================
+
+function escapeAttribute(value) {
+    return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
 
 function escapeHtml(text) {
     const div = document.createElement("div");
